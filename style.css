@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&family=Raleway:wght@500&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: rgb(136, 0, 68);
+    --secondary-color: rgb(170, 17, 85);
+    --tertiary-color: rgb(221, 17, 85);
+}
+body {
+    font-family: 'Poppins', Courier, monospace;
+    margin: 0;
+    background-image: linear-gradient(to bottom, var(--primary-color), var(--tertiary-color));
+}
+
+
+/* Footer */
+footer {
+    position: absolute;
+    bottom: 0;
+    padding: 1rem 0;
+    width: 100%;
+    text-align: center;
+    color: white;
+}
+
+a {
+    color: pink;
+}
