@@ -12,13 +12,118 @@
     --secondary-color: rgb(170, 17, 85);
     --tertiary-color: rgb(221, 17, 85);
 }
+
 body {
     font-family: 'Poppins', Courier, monospace;
     margin: 0;
-    background-image: linear-gradient(to bottom, var(--primary-color), var(--tertiary-color));
+    background-color: var(--primary-color);
+    min-height:100%; 
+    position:relative; 
+    padding-bottom: 3rem;
 }
 
+header {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
+header h1{
+    color: white;
+    font-size: 3rem;
+}
+
+.search {
+    padding: 0.5rem 1rem;
+    font-family: inherit;
+    border-radius: 50px;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 1.25rem;
+    border: 2px solid var(--secondary-color);
+}
+
+.search:focus {
+    outline: 0;
+    background-color: var(--secondary-color);
+}
+
+.search::placeholder {
+    color:rgba(255, 255, 255, 0.5);
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.movie {
+    width: 300px;
+    margin: 1rem;
+    background-color: var(--secondary-color);
+    box-shadow: 0 4px 5px rgba(0,0,0,0.2);
+    border-radius: 3px;
+    position: relative;
+    overflow: hidden;
+}
+
+.movie img {
+    max-width: 100%;
+    height: auto;
+}
+
+.movie .movie-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    color: white;
+    letter-spacing: 0.5;
+}
+
+.movie .movie-info h3 {
+    flex-basis: 80%;
+    max-width: 80%;
+    padding-right: 0.5rem;
+}
+.movie .movie-info span {
+    font-weight: bold;
+    position: relative;
+    flex-basis: 20%;
+    max-width: 20%;
+    text-align: center;
+    background-color: var(--primary-color);
+    padding: 0.75rem 1rem;
+}
+
+.movie .movie-info span.green {
+    color: lightgreen;
+}
+
+.movie .movie-info span.orange {
+    color: orange;
+}
+
+.movie .movie-info span.red {
+    color: red;
+}
+
+.overview {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 2rem;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: translateY(100%);
+    transition: all 0.3s ease-in;
+}
+
+.movie:hover .overview {
+    transform: translateY(0);
+}
 /* Footer */
 footer {
     position: absolute;
