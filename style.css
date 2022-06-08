@@ -53,7 +53,7 @@ header h1{
     color:rgba(255, 255, 255, 0.5);
 }
 
-main {
+#movies {
     display: flex;
     flex-wrap: wrap;
 }
@@ -124,6 +124,59 @@ main {
 .movie:hover .overview {
     transform: translateY(0);
 }
+
+
+/* button */
+.actions {
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    width: 180px;
+    height: 60px;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid var(--tertiary-color);
+    outline: none;
+    transition: 0.5s ease-in-out;
+    position: relative;
+    margin-right: 1rem
+}
+
+.btn,
+svg{
+    border-radius: 3px;
+}
+
+svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    fill: none;
+    stroke: #fff;
+    stroke-dasharray: 150 480;
+    stroke-dashoffset: 150;
+    transition: 0.75s ease-in-out;
+}
+
+.btn:hover {
+    transition: 0.2s ease-in-out;
+    background: var(--secondary-color);
+}
+
+.btn:hover svg {
+    stroke-dashoffset: -480;
+}
+
+.btn span {
+    color: white;
+    font-size: 1.25rem;
+    letter-spacing: 0.5;
+}
+
+  
 /* Footer */
 footer {
     position: absolute;

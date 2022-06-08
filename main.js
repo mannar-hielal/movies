@@ -1,11 +1,18 @@
 const API_URL = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=adf6b924719ae76900ac8493a2124769";
 const IMAGE_PATH = "https://image.tmdb.org/t/p/w1280";
 const SEARCH_URL = "https://api.themoviedb.org/3/search/movie?api_key=adf6b924719ae76900ac8493a2124769&query=";
+const PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=adf6b924719ae76900ac8493a2124769&language=en-US&page=1";
+const TOP_URL = "https://api.themoviedb.org/3/movie/top_rated?api_key=adf6b924719ae76900ac8493a2124769&language=en-US&page=1";
+const UPCOMING_URL = "https://api.themoviedb.org/3/movie/upcoming?api_key=adf6b924719ae76900ac8493a2124769&language=en-US&page=1";
+
 
 const form = document.getElementById("form");
 const search = document.getElementById("search");
+const playingBtn = document.getElementById("playing");
+const topBtn = document.getElementById("top");
+const upcomingBtn = document.getElementById("upcoming");
 
-const main = document.getElementById("main");
+const moviesSection = document.getElementById("movies");
 
 async function getMoviesFromAPI(url) {
     const response = await fetch(url);
@@ -16,7 +23,7 @@ async function getMoviesFromAPI(url) {
 getMoviesFromAPI(API_URL);
 
 function showMovies(movies) {
-    main.innerHTML="";
+    moviesSection.innerHTML="";
 
     movies.forEach(movie=> {
         const {title, vote_average, poster_path, overview} = movie;
@@ -34,7 +41,7 @@ function showMovies(movies) {
                 <div>${overview}</div>
             </div>
         `;
-        main.appendChild(movieEl);
+        moviesSection.appendChild(movieEl);
     })
 }
 
@@ -57,4 +64,16 @@ form.addEventListener("submit", (e)=> {
     } else {
         window.location.reload();
     }
+});
+
+playingBtn.addEventListener ("click", ()=> {
+    getMoviesFromAPI(PLAYING_URL);
+});
+
+topBtn.addEventListener ("click", ()=> {
+    getMoviesFromAPI(TOP_URL);
+});
+
+upcomingBtn.addEventListener ("click", ()=> {
+    getMoviesFromAPI(UPCOMING_URL);
 })
