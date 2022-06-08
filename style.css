@@ -56,7 +56,7 @@ header h1{
 .movies {
     display: flex;
     flex-wrap: wrap;
-    
+    justify-content: center;
 }
 
 .movies:hover .movie:not(:hover){
