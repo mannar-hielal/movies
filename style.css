@@ -53,10 +53,15 @@ header h1{
     color:rgba(255, 255, 255, 0.5);
 }
 
-#movies {
+.movies {
     display: flex;
     flex-wrap: wrap;
+    
 }
+
+.movies:hover .movie:not(:hover){
+    transform: scale(0.95);
+} 
 
 .movie {
     width: 300px;
@@ -66,6 +71,14 @@ header h1{
     border-radius: 3px;
     position: relative;
     overflow: hidden;
+    transition: 0.2s all;
+    cursor: pointer;
+}
+
+.movie:hover {
+    z-index: 1;
+    transform: scale(1);
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 70%);
 }
 
 .movie img {
