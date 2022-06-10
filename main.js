@@ -1,9 +1,9 @@
 const API_URL = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=adf6b924719ae76900ac8493a2124769";
 const IMAGE_PATH = "https://image.tmdb.org/t/p/w1280";
 const SEARCH_URL = "https://api.themoviedb.org/3/search/movie?api_key=adf6b924719ae76900ac8493a2124769&query=";
-const PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=adf6b924719ae76900ac8493a2124769&language=en-US&page=1";
-const TOP_URL = "https://api.themoviedb.org/3/movie/top_rated?api_key=adf6b924719ae76900ac8493a2124769&language=en-US&page=1";
-const UPCOMING_URL = "https://api.themoviedb.org/3/movie/upcoming?api_key=adf6b924719ae76900ac8493a2124769&language=en-US&page=1";
+const PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=adf6b924719ae76900ac8493a2124769&language=en-US";
+const TOP_URL = "https://api.themoviedb.org/3/movie/top_rated?api_key=adf6b924719ae76900ac8493a2124769&language=en-US";
+const UPCOMING_URL = "https://api.themoviedb.org/3/movie/upcoming?api_key=adf6b924719ae76900ac8493a2124769&language=en-US";
 
 
 const form = document.getElementById("form");
@@ -11,11 +11,14 @@ const search = document.getElementById("search");
 const playingBtn = document.getElementById("playing");
 const topBtn = document.getElementById("top");
 const upcomingBtn = document.getElementById("upcoming");
+const loader = document.querySelector(".loader");
 
 const moviesSection = document.getElementById("movies");
+let page = 1;
+let currentUrl = API_URL;
 
 async function getMoviesFromAPI(url) {
-    const response = await fetch(url);
+    const response = await fetch(`${url}&page=${page}`);
     const data = await response.json();
     showMovies(data.results);
 }
@@ -23,8 +26,6 @@ async function getMoviesFromAPI(url) {
 getMoviesFromAPI(API_URL);
 
 function showMovies(movies) {
-    moviesSection.innerHTML="";
-
     movies.forEach(movie=> {
         const {title, vote_average, poster_path, overview} = movie;
         const movieEl = document.createElement("div");
@@ -66,14 +67,40 @@ form.addEventListener("submit", (e)=> {
     }
 });
 
+function clearMovieSection() {
+    moviesSection.innerHTML="";
+}
+
 playingBtn.addEventListener ("click", ()=> {
+    clearMovieSection();
+    currentUrl = PLAYING_URL;
     getMoviesFromAPI(PLAYING_URL);
 });
 
 topBtn.addEventListener ("click", ()=> {
+    clearMovieSection();
+    currentUrl = TOP_URL;
     getMoviesFromAPI(TOP_URL);
 });
 
 upcomingBtn.addEventListener ("click", ()=> {
+    clearMovieSection();
+    currentUrl = UPCOMING_URL;
     getMoviesFromAPI(UPCOMING_URL);
+});
+
+window.addEventListener("scroll", ()=>{
+    const {scrollTop, scrollHeight, clientHeight} = document.body;
+    if ( scrollTop + clientHeight >= scrollHeight - 5) {
+        loader.classList.add("show");
+
+        setTimeout(()=>{
+            loader.classList.remove("show");
+        }, 2000);
+
+        setTimeout(()=>{
+            page++;
+            getMoviesFromAPI(currentUrl);
+        }, 2000);
+    }
 })
