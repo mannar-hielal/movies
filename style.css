@@ -189,7 +189,47 @@ svg {
     letter-spacing: 0.5;
 }
 
-  
+/* Loader */
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem auto;
+    opacity: 0;
+}
+
+.loader.show{
+    opacity: 1;
+}
+
+.loader .circle {
+    background-color: white;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 50%;
+    margin: 0.5rem;
+    animation: bounce 0.5s ease-in infinite;
+}
+
+.loader .circle:nth-of-type(2){
+    animation-delay: 0.1s;
+}
+
+.loader .circle:nth-of-type(3){
+    animation-delay: 0.2s;
+}
+
+@keyframes bounce {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+    
+}
 /* Footer */
 footer {
     position: absolute;
