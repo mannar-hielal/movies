@@ -60,6 +60,8 @@ form.addEventListener("submit", (e)=> {
     e.preventDefault();
     const searchTerm = search.value;
     if (searchTerm && searchTerm !== "") {
+        clearMovieSection();
+        currentUrl = SEARCH_URL + searchTerm;
         getMoviesFromAPI(SEARCH_URL + searchTerm);
         search.value = "";
     } else {

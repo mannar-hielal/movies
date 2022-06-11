@@ -29,9 +29,15 @@ header {
     align-items: center;
 }
 
+header > * {
+    flex: 0 0 33.33%;
+    max-width: 33.333%;
+}
+
 header h1{
     color: white;
     font-size: 3rem;
+    text-align: center;
 }
 
 .search {
@@ -42,6 +48,8 @@ header h1{
     color: white;
     font-size: 1.25rem;
     border: 2px solid var(--secondary-color);
+    display: block;
+    margin-left: auto;
 }
 
 .search:focus {
