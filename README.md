@@ -12,6 +12,7 @@ If you find this useful please give this repository a star :star:
 1. Movie list with FETCH API
 1. Search
 2. Infinate Scroll
+3. Sort by Playing Now, Top Rated, Upcoming
 
 # Run
 Open `index.html` in browser.
