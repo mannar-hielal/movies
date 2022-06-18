@@ -15,6 +15,8 @@ const topBtn = document.getElementById("top");
 const upcomingBtn = document.getElementById("upcoming");
 const loader = document.querySelector(".loader");
 const video = document.getElementById("video");
+const close = document.getElementById("close");
+
 
 const moviesSection = document.getElementById("movies");
 let page = 1;
@@ -51,7 +53,7 @@ function showMovies(movies) {
             </div>
             <div class="overview">
                 <h3>Overview</h3>
-                <div>${overview}</div>
+                <div>${overview.substring(0,120)}..</div>
             </div>
         `;
         moviesSection.appendChild(movieEl);
@@ -63,7 +65,7 @@ function showMovies(movies) {
 }
 
 function setVideoSrc(key) {
-    video.src= `https://www.youtube.com/embed/${key}`;
+    video.src = `https://www.youtube.com/embed/${key}`;
 }
 
 function getClassByRate(vote) {
@@ -75,6 +77,10 @@ function getClassByRate(vote) {
         return "red";
     }
 }
+
+close.addEventListener ("click", ()=> {
+    video.src = "about:blank";
+})
 
 form.addEventListener("submit", (e)=> {
     e.preventDefault();
