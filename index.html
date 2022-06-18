@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <header>
+    <header id="header">
       <h1>Movies App</h1>
       <form id="form">
         <input type="text" id="search" class="search" placeholder="Search ..">
@@ -53,6 +53,12 @@
     </div>
    </main>
 
+   <div class="popup-overlay" id="popup">
+    <a href="#header" class="btn-close">&times;</a>
+    <div class="video-container">
+      <iframe class="video" src="https://www.youtube.com/embed/dLI4xgDBkRc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+   </div>
     <footer>
         <p> Developed by <a href="https://www.linkedin.com/in/mannar-hielal/">Mannar Hielal</a></p>
     </footer>

@@ -4,6 +4,7 @@ const SEARCH_URL = "https://api.themoviedb.org/3/search/movie?api_key=adf6b92471
 const PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=adf6b924719ae76900ac8493a2124769&language=en-US";
 const TOP_URL = "https://api.themoviedb.org/3/movie/top_rated?api_key=adf6b924719ae76900ac8493a2124769&language=en-US";
 const UPCOMING_URL = "https://api.themoviedb.org/3/movie/upcoming?api_key=adf6b924719ae76900ac8493a2124769&language=en-US";
+const VID_URL = "https://api.themoviedb.org/3/movie/508947/videos?api_key=adf6b924719ae76900ac8493a2124769&language=en-US"
 
 
 const form = document.getElementById("form");
@@ -34,7 +35,9 @@ function showMovies(movies) {
         movieEl.innerHTML = `
             <img src="${IMAGE_PATH + poster_path}" alt="">
             <div class="movie-info">
-                <h3>${title}</h3>
+                <h3>
+                    <a href="#popup">${title}</a>
+                </h3>
                 <span class="${getClassByRate(vote_average)}">${vote_average}</span>
             </div>
             <div class="overview">
