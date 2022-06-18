@@ -1,10 +1,11 @@
 const API_URL = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=adf6b924719ae76900ac8493a2124769";
+const API_KEY = "adf6b924719ae76900ac8493a2124769"
 const IMAGE_PATH = "https://image.tmdb.org/t/p/w1280";
 const SEARCH_URL = "https://api.themoviedb.org/3/search/movie?api_key=adf6b924719ae76900ac8493a2124769&query=";
 const PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=adf6b924719ae76900ac8493a2124769&language=en-US";
 const TOP_URL = "https://api.themoviedb.org/3/movie/top_rated?api_key=adf6b924719ae76900ac8493a2124769&language=en-US";
 const UPCOMING_URL = "https://api.themoviedb.org/3/movie/upcoming?api_key=adf6b924719ae76900ac8493a2124769&language=en-US";
-const VID_URL = "https://api.themoviedb.org/3/movie/508947/videos?api_key=adf6b924719ae76900ac8493a2124769&language=en-US"
+const VIDEO_URL = "https://api.themoviedb.org/3/movie/"
 
 
 const form = document.getElementById("form");
@@ -13,6 +14,7 @@ const playingBtn = document.getElementById("playing");
 const topBtn = document.getElementById("top");
 const upcomingBtn = document.getElementById("upcoming");
 const loader = document.querySelector(".loader");
+const video = document.getElementById("video");
 
 const moviesSection = document.getElementById("movies");
 let page = 1;
@@ -22,6 +24,13 @@ async function getMoviesFromAPI(url) {
     const response = await fetch(`${url}&page=${page}`);
     const data = await response.json();
     showMovies(data.results);
+}
+
+async function fetchVideo(id) {
+    const videoUrl = `${VIDEO_URL}${id}/videos?api_key=${API_KEY}&language=en-US`;
+    const response = await fetch (videoUrl);
+    const data = await response.json();
+    setVideoSrc(data.results[0].key);
 }
 
 getMoviesFromAPI(API_URL);
@@ -46,7 +55,15 @@ function showMovies(movies) {
             </div>
         `;
         moviesSection.appendChild(movieEl);
+
+        movieEl.addEventListener("click", () => {
+            fetchVideo(movie.id);
+        });
     })
+}
+
+function setVideoSrc(key) {
+    video.src= `https://www.youtube.com/embed/${key}`;
 }
 
 function getClassByRate(vote) {
