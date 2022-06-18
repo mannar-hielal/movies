@@ -313,7 +313,7 @@ svg {
  which comes as 0.5625 or 56.25%. */
 .popup-overlay .video-container {
     background-color: white;
-    width: 50%;
+    width: 95%;
     height: auto;
     border-radius: 3px;
     overflow: hidden;
@@ -323,6 +323,12 @@ svg {
     transform: scale(0.2);
     opacity: 0;
     visibility: hidden;
+}
+
+@media (min-width: 75rem) {
+    .popup-overlay .video-container {
+        width: 50%;
+    } 
 }
 
 .popup-overlay .video-container .iframe-wrapper {
